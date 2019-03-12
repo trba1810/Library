@@ -1,0 +1,48 @@
+﻿@model Library.Models.Books
+
+@using (Html.BeginForm("UpdateBook", "Home"))
+{
+
+<div class="form-horizontal">
+    <h4>Location</h4>
+    <hr />
+    @Html.HiddenFor(model => model.Book.ID_Knjige)
+    <div class="form-group">
+        @Html.LabelFor(model => model.Book.Naziv_Knjige, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Book.Naziv_Knjige, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Book.Naziv_Knjige, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.listZanrova, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Book.ID_Zanr, Model.listZanrova, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Book.ID_Zanr, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Book.Autor, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Book.Autor, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Book.Autor, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+
+<script src="/scripts/jquery.validate.js"></script>
+<script src="/scripts/jquery.validate.unobtrusive.js"></script>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
